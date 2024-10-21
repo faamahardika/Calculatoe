@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatoe.</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" id="home-link" class="logo">Calculatoe.</a>
+        <a href="signin.html" class="signin-button">Sign In</a>
+        
+    </header>
+
+    <main class="background">
+        <section class="title">
+            <h1>Calculatoe.</h1>
+        </section>
+
+        <!-- Mode Selection -->
+        <section id="mode-selection" class="controls">
+            <button id="player-vs-player" class="mode">Player vs Player</button>
+            <button id="player-vs-bot" class="mode">Player vs Bot</button>
+        </section>
+
+        <!-- Game Board and other game elements (hidden initially) -->
+        <section class="display hide">
+            <span id="current-player" class="display-player playerX">X</span>
+        </section>
+
+        <section id="game-board" class="container hide">
+            <div class="cell tile" data-index="0"></div>
+            <div class="cell tile" data-index="1"></div>
+            <div class="cell tile" data-index="2"></div>
+            <div class="cell tile" data-index="3"></div>
+            <div class="cell tile" data-index="4"></div>
+            <div class="cell tile" data-index="5"></div>
+            <div class="cell tile" data-index="6"></div>
+            <div class="cell tile" data-index="7"></div>
+            <div class="cell tile" data-index="8"></div>
+        </section>
+
+        <section class="display announcer hide"></section>
+
+        <section class="controls hide">
+            <button id="reset-button" class="restart">Reset</button>
+        </section>
+    </main>
+
+    <script src="game.js"></script>
+
+    <footer class="footer">
+        &copy; 2024 by 18222124 Fadian Alif Mahardika. All Rights Reserved.
+    </footer>    
+</body>
+</html>

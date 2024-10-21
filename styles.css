@@ -1,0 +1,338 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Itim', cursive;
+}
+
+.header {
+    width: 100%;
+    background-color: #12181B;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo {
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.signin-button {
+    text-decoration: none;
+    background-color: #FF3860;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-right: 60px;
+}
+
+.signin-button:hover {
+    background-color: #09C372;
+}
+
+.controls button:hover {
+    background-color: #09C372;
+}
+
+.main-content {
+    margin-top: 80px;   
+}
+
+.background {
+    background-color: #12181B;
+    height: 100vh;
+    padding-top: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 10%;
+}
+
+.display {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.hide {
+    display: none;
+}
+
+.container {
+    margin-bottom: 150px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    max-width: 300px;
+}
+
+.tile {
+    border: 1px solid white;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    background-color: #333;
+}
+
+.tile.x {
+    color: #09C372; /* Green color for X */
+    font-size: 40px; /* Adjust size as needed */
+}
+
+.tile.o {
+    color: #FF3860; /* Red color for O */
+    font-size: 40px; /* Adjust size as needed */
+}
+
+.playerX {
+    color: #09C372;
+}
+
+.playerO {
+    color: #FF3860;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.controls button {
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 20px;
+    margin-left: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mode {
+    background-color: #FF3860;
+    margin-right: 10px;
+    margin-bottom: 150px;
+}
+
+.hide {
+    display: none;
+}
+
+/* Dark theme for SweetAlert2 */
+.swal2-popup {
+    background-color: #1e1e1e; /* Dark background */
+    color: white; /* White text */
+    border-radius: 10px; /* Optional rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+.swal2-title {
+    color: #ffffff;
+}
+
+.swal2-content {
+    color: #d3d3d3;
+}
+
+.swal2-confirm {
+    background-color: #09C372 !important; /* Green button */
+    color: white !important;
+}
+
+.swal2-cancel {
+    background-color: #FF3860 !important; /* Red button */
+    color: white !important;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #12181B;
+    color: white;
+    padding: 10px 0;
+    font-size: 14px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Styling untuk Halaman Sign-In */
+.sign-in-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #12181B;
+    color: white;
+    font-family: 'Itim', cursive;
+}
+
+.sign-in-container h1 {
+    margin-bottom: 20px;
+}
+
+#sign-in-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#sign-in-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+#sign-in-form button {
+    padding: 10px;
+    background-color: #FF3860;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+#sign-in-form button:hover {
+    background-color: #09C372;
+}
+
+.back-to-home {
+    margin-top: 10px;
+    color: #498AFB;
+    text-decoration: none;
+}
+
+.back-to-home:hover {
+    text-decoration: underline;
+}
+
+.sign-up-text {
+    margin-top: 15px;
+    color: white;
+}
+
+.sign-up-link {
+    color: #498AFB;
+    text-decoration: none;
+}
+
+.sign-up-link:hover {
+    text-decoration: underline;
+}
+
+/* Styling untuk Halaman Sign-Up */
+.sign-up-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #12181B;
+    color: white;
+    font-family: 'Itim', cursive;
+}
+
+.sign-up-container h1 {
+    margin-bottom: 20px;
+}
+
+#sign-up-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#sign-up-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+#sign-up-form button {
+    padding: 10px;
+    background-color: #FF3860;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+#sign-up-form button:hover {
+    background-color: #09C372;
+}
+
+.sign-in-text {
+    margin-top: 15px;
+}
+
+.sign-in-link {
+    color: #498AFB;
+    text-decoration: none;
+}
+
+.sign-in-link:hover {
+    text-decoration: underline;
+}
+
+input[type="email"] {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.back-to-home {
+    margin-top: 15px;
+    color: #498AFB;
+    text-decoration: none;
+}
+
+.back-to-home:hover {
+    text-decoration: underline;
+}

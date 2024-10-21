@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - MatriX-O</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="sign-up-container">
+        <h1>Create an Account</h1>
+        <form id="sign-up-form autocomplete="off"">
+            <input type="text" id="new-username" placeholder="Username" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="new-password" placeholder="Password" required>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="sign-in-text">
+            Already have an account? <a href="signin.html" class="sign-in-link">Sign In</a>
+        </p>
+        <a href="index.html" class="back-to-home">Back to Home</a>
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+</html>
