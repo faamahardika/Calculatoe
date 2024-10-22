@@ -2,6 +2,7 @@ const board = Array(9).fill(null);
 const players = ['X', 'O'];
 let currentPlayer = 0;
 let isVsBot = false;
+let botDifficulty = 'medium';
 const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
     [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -65,30 +66,40 @@ let mathBoard = Array.from({ length: 9 }, () => getRandomMathQuestion());
 function setGameMode(mode) {
     isVsBot = mode === 'bot';
     modeSelection.classList.add('hide');
+    if (isVsBot) {
+        document.getElementById('bot-difficulty').classList.remove('hide');
+    } else {
+        document.getElementById('bot-difficulty').classList.add('hide');
+    }
     displaySection.classList.remove('hide');
     gameBoard.classList.remove('hide');
     resetButton.classList.remove('hide');
     resetGame();
+    render(); // Add this line to re-render the board
 }
 
 function render() {
     cells.forEach((cell, i) => {
         if (board[i]) {
             cell.textContent = board[i];
-            cell.className = `cell tile ${board[i] === 'X' ? 'x' : 'o'}`; // Apply class based on player
+            if (isVsBot && board[i] === 'O') {
+                cell.className = 'cell tile bot-o';
+            } else {
+                cell.className = `cell tile ${board[i] === 'X' ? 'x' : 'o'}`;
+            }
         } else {
             cell.textContent = mathBoard[i].equation; // Show math question if cell is empty
             cell.className = 'cell tile'; // Reset class for empty cells
         }
     });
     
-    // Update player display color
-    if (currentPlayer === 0) {
-        playerDisplay.innerHTML = `Player X's turn`;
-        playerDisplay.style.color = '#09C372'; // Green for X
+    // Update player display
+    if (isVsBot && currentPlayer === 1) {
+        playerDisplay.className = 'display-player bot-turn';
+        playerDisplay.innerHTML = "Bot's turn";
     } else {
-        playerDisplay.innerHTML = `Player O's turn`;
-        playerDisplay.style.color = '#FF3860'; // Red for O
+        playerDisplay.className = `display-player player${players[currentPlayer]}`;
+        playerDisplay.innerHTML = `Player ${players[currentPlayer]}'s turn`;
     }
 }
 
@@ -108,7 +119,7 @@ function isBoardFull() {
 function handleClick(e) {
     const index = e.target.dataset.index;
 
-    if (board[index] || !isGameActive) return; // Prevent clicking on filled cells
+    if (board[index] || !isGameActive || (isVsBot && currentPlayer === 1)) return; // Prevent clicking on filled cells
 
     Swal.fire({
         title: `Player ${players[currentPlayer]}`,
@@ -156,49 +167,175 @@ function handleClick(e) {
                     // Switch to next player
                     currentPlayer = 1 - currentPlayer;
                     render(); // Call render to update player display color
+
+                    // If it's bot's turn, make a move
+                    if (isVsBot && currentPlayer === 1) {
+                        setTimeout(botMove, 1000); // Add a delay for better UX
+                    }
                 }
             } else {
                 // Wrong answer, switch to next player
                 Swal.fire('Wrong answer!', 'Next player\'s turn.', 'error');
                 currentPlayer = 1 - currentPlayer;
                 render(); // Call render to update player display color
+
+                // If it's bot's turn, make a move
+                if (isVsBot && currentPlayer === 1) {
+                    botMove();
+                }
             }
         }
     });
 }
 
-function botMove() {
+function easyBotMove() {
     let availableCells = board
         .map((value, index) => value === null ? index : null)
         .filter(value => value !== null);
 
-    if (availableCells.length === 0) return; // Jika tidak ada cell kosong, berhenti
+    const randomIndex = Math.floor(Math.random() * availableCells.length);
+    return availableCells[randomIndex];
+}
 
-    const botAnswer = mathBoard[availableCells[0]].answer; // Bot otomatis benar
-    board[availableCells[0]] = players[currentPlayer]; // Isi cell dengan simbol bot
-    render();
-
-    if (checkWinner()) {
-        isGameActive = false;
-        Swal.fire({
-            icon: 'success',
-            title: `Player ${players[currentPlayer]} wins!`,
-            showConfirmButton: true,
-            confirmButtonText: 'OK'
-        }).then(() => resetGame());
-    } else if (isBoardFull()) {
-        isGameActive = false;
-        Swal.fire({
-            icon: 'info',
-            title: "It's a tie!",
-            showConfirmButton: true,
-            confirmButtonText: 'OK'
-        }).then(() => resetGame());
-    } else {
-        // Ganti giliran ke pemain
-        currentPlayer = 1 - currentPlayer;
-        playerDisplay.innerHTML = `Player ${players[currentPlayer]}'s turn`;
+function mediumBotMove() {
+    // Check if bot can win in the next move
+    for (let i = 0; i < 9; i++) {
+        if (board[i] === null) {
+            board[i] = players[1]; // Assume bot's move
+            if (checkWinner()) {
+                board[i] = null; // Undo the move
+                return i;
+            }
+            board[i] = null; // Undo the move
+        }
     }
+
+    // Check if player can win in the next move and block
+    for (let i = 0; i < 9; i++) {
+        if (board[i] === null) {
+            board[i] = players[0]; // Assume player's move
+            if (checkWinner()) {
+                board[i] = null; // Undo the move
+                return i;
+            }
+            board[i] = null; // Undo the move
+        }
+    }
+
+    // If no winning move, play randomly
+    return easyBotMove();
+}
+
+function hardBotMove() {
+    let bestScore = -Infinity;
+    let move;
+    for (let i = 0; i < 9; i++) {
+        if (board[i] === null) {
+            board[i] = players[1]; // Bot's move
+            let score = minimax(board, 0, false);
+            board[i] = null;
+            if (score > bestScore) {
+                bestScore = score;
+                move = i;
+            }
+        }
+    }
+    return move;
+}
+
+function minimax(board, depth, isMaximizing) {
+    let result = checkGameEnd(board);
+    if (result !== null) {
+        return result / (depth + 1); // Divide by depth to prefer quicker wins
+    }
+
+    if (isMaximizing) {
+        let bestScore = -Infinity;
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === null) {
+                board[i] = players[1]; // Bot's move
+                let score = minimax(board, depth + 1, false);
+                board[i] = null;
+                bestScore = Math.max(score, bestScore);
+            }
+        }
+        return bestScore;
+    } else {
+        let bestScore = Infinity;
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === null) {
+                board[i] = players[0]; // Player's move
+                let score = minimax(board, depth + 1, true);
+                board[i] = null;
+                bestScore = Math.min(score, bestScore);
+            }
+        }
+        return bestScore;
+    }
+}
+
+function checkGameEnd(board) {
+    for (let [a, b, c] of winningCombinations) {
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return board[a] === players[1] ? 10 : -10;
+        }
+    }
+    if (board.every(cell => cell !== null)) {
+        return 0; // It's a tie
+    }
+    return null; // Game is not over
+}
+
+function botMove() {
+    if (!isGameActive) return;
+
+    // Update display to show it's the bot's turn
+    playerDisplay.className = 'display-player bot-turn';
+    playerDisplay.innerHTML = "Bot's turn";
+
+    // Add a delay before the bot makes its move
+    setTimeout(() => {
+        let cellIndex;
+        switch (botDifficulty) {
+            case 'easy':
+                cellIndex = easyBotMove();
+                break;
+            case 'medium':
+                cellIndex = mediumBotMove();
+                break;
+            case 'hard':
+                cellIndex = hardBotMove();
+                break;
+            default:
+                cellIndex = mediumBotMove();
+        }
+
+        if (cellIndex !== undefined && board[cellIndex] === null) {
+            board[cellIndex] = players[currentPlayer];
+            render();
+
+            if (checkWinner()) {
+                isGameActive = false;
+                Swal.fire({
+                    icon: 'success',
+                    title: `Bot wins!`,
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                }).then(() => resetGame());
+            } else if (isBoardFull()) {
+                isGameActive = false;
+                Swal.fire({
+                    icon: 'info',
+                    title: "It's a tie!",
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                }).then(() => resetGame());
+            } else {
+                currentPlayer = 1 - currentPlayer;
+                render();
+            }
+        }
+    }, 2000); // 2 second delay before bot makes its move
 }
 
 function resetGame() {
@@ -207,8 +344,7 @@ function resetGame() {
     mathBoard = Array.from({ length: 9 }, () => getRandomMathQuestion());
     isGameActive = true;
     announcer.classList.add('hide');
-    playerDisplay.innerHTML = `Player ${players[currentPlayer]}'s turn`;
-    render();
+    render(); // Replace playerDisplay.innerHTML with this
 }
 
 function showHomePage() {
@@ -227,5 +363,9 @@ document.getElementById('player-vs-bot').addEventListener('click', () => setGame
 document.getElementById('home-link').addEventListener('click', (e) => {
     e.preventDefault();
     showHomePage();
+});
+document.getElementById('difficulty-select').addEventListener('change', function() {
+    botDifficulty = this.value;
+    resetGame();
 });
 render();

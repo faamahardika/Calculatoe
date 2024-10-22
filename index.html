@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <canvas id="backgroundCanvas"></canvas>
     <header class="header">
         <a href="#" id="home-link" class="logo">Calculatoe.</a>
         <a href="signin.html" class="signin-button">Sign In</a>
@@ -25,6 +26,14 @@
         <section id="mode-selection" class="controls">
             <button id="player-vs-player" class="mode">Player vs Player</button>
             <button id="player-vs-bot" class="mode">Player vs Bot</button>
+        </section>
+
+        <section id="bot-difficulty" class="controls hide">
+            <select id="difficulty-select">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+            </select>
         </section>
 
         <!-- Game Board and other game elements (hidden initially) -->
@@ -49,9 +58,11 @@
         <section class="controls hide">
             <button id="reset-button" class="restart">Reset</button>
         </section>
+        
     </main>
 
     <script src="game.js"></script>
+    <script src="background.js"></script>
 
     <footer class="footer">
         &copy; 2024 by 18222124 Fadian Alif Mahardika. All Rights Reserved.

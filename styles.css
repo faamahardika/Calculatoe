@@ -190,6 +190,7 @@
     padding: 10px 0;
     font-size: 14px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 /* Styling untuk Halaman Sign-In */
@@ -335,4 +336,40 @@ input[type="email"] {
 
 .back-to-home:hover {
     text-decoration: underline;
+}
+
+#bot-difficulty {
+    margin-top: 20px;
+}
+
+#difficulty-select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #FF3860;
+}
+
+#difficulty-select option {
+    background-color: #333;
+}
+
+.bot-turn {
+    color: white !important;
+}
+
+.bot-o {
+    color: white !important;
+    font-size: 40px !important;
+}
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
