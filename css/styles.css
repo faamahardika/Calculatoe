@@ -25,12 +25,22 @@
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .header-title {
     font-size: 24px;
     font-weight: bold;
-    cursor: pointer;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .signin-button {
@@ -41,6 +51,11 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
     font-size: 16px;
     transition: background-color 0.3s;
     margin-right: 60px;
@@ -73,6 +88,25 @@
     text-align: center;
     font-size: 40px;
     margin-top: 10%;
+    z-index: 1;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+}
+
+.description {
+    color: #2e3a42;
+    text-align: center;
+    font-size: 20px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .display {
@@ -81,6 +115,12 @@
     text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .hide {
@@ -105,17 +145,36 @@
     font-size: 16px;
     cursor: pointer;
     color: white;
-    background-color: #333;
+    background-color: #626262;
+    z-index: 1;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .tile.x {
     color: #09C372; /* Green color for X */
     font-size: 40px; /* Adjust size as needed */
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .tile.o {
     color: #FF3860; /* Red color for O */
     font-size: 40px; /* Adjust size as needed */
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .playerX {
@@ -142,6 +201,7 @@
     margin-left: 1em;
     cursor: pointer;
     transition: background-color 0.3s;
+    z-index: 1;
 }
 
 .mode {
@@ -164,20 +224,44 @@
 
 .swal2-title {
     color: #ffffff;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .swal2-content {
     color: #d3d3d3;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .swal2-confirm {
     background-color: #09C372 !important; /* Green button */
     color: white !important;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .swal2-cancel {
     background-color: #FF3860 !important; /* Red button */
     color: white !important;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .footer {
@@ -191,6 +275,12 @@
     font-size: 14px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 /* Styling untuk Halaman Sign-In */
@@ -207,6 +297,12 @@
 
 .sign-in-container h1 {
     margin-bottom: 20px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 #sign-in-form {
@@ -246,16 +342,34 @@
 
 .back-to-home:hover {
     text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .sign-up-text {
     margin-top: 15px;
     color: white;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .sign-up-link {
     color: #498AFB;
     text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .sign-up-link:hover {
@@ -276,6 +390,12 @@
 
 .sign-up-container h1 {
     margin-bottom: 20px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 #sign-up-form {
@@ -309,11 +429,23 @@
 
 .sign-in-text {
     margin-top: 15px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .sign-in-link {
     color: #498AFB;
     text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .sign-in-link:hover {
@@ -332,6 +464,12 @@ input[type="email"] {
     margin-top: 15px;
     color: #498AFB;
     text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .back-to-home:hover {
@@ -349,10 +487,22 @@ input[type="email"] {
     background-color: #333;
     color: white;
     border: 1px solid #FF3860;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 #difficulty-select option {
     background-color: #333;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
 .bot-turn {
