@@ -4,7 +4,7 @@ Calculatoe is a web-based Tic-Tac-Toe game that adds a fun and educational twist
 
 ## Features
 - **Player vs Player Mode**: Two players face off, and each must solve a calculus equation before making a move.
-- **Player vs Bot Mode**: Play against a bot that uses an algoritm according to which difficulty the player chose for optimal gameplay.
+- **Player vs Bot Mode**: Play against a bot that uses an algorithm according to the chosen difficulty for optimal gameplay.
 - **Random Calculus Questions**: Each cell of the Tic-Tac-Toe board contains a calculus question that must be answered correctly before a move can be made.
 - **Simple, Intuitive Interface**: Built with HTML, CSS, and JavaScript for a clean and easy-to-use design.
 
@@ -23,6 +23,11 @@ Calculatoe is a web-based Tic-Tac-Toe game that adds a fun and educational twist
     ```
 
 2. Open `index.html` in your web browser to start playing.
+
+## Play Online
+You can also play Calculatoe directly at the following domain:
+
+[**Play Calculatoe**](faamahardika.github.io/Calculatoe)
 
 ## Technologies Used
 - **HTML**: For the structure of the web page.
