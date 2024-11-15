@@ -523,3 +523,69 @@ input[type="email"] {
     z-index: 1;
     pointer-events: none;
 }
+
+#profile-icon {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    top: 12vh;
+    right: 4vh;
+}
+
+#profile-img {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it circular */
+}
+
+.profile-popup {
+    position: absolute;
+    top: 0vh; /* Adjust based on your header height */
+    right: 8vh;
+    background-color: white;
+    color: black;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.profile-popup.logged-out {
+    width: 100px;
+    height: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.stats-button:hover {
+    background-color: #45a049;
+}
+
+.stats-popup {
+    text-align: left;
+    padding: 10px;
+}
+
+.stats-popup p {
+    margin: 10px 0;
+    padding: 5px;
+    background-color: #1e1e1e;
+    border-radius: 5px;
+}

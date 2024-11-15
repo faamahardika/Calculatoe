@@ -1,3 +1,7 @@
+import { db } from '../config/firebase.js';
+import { auth } from '../config/firebase.js';
+import { doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js";
+
 const board = Array(9).fill(null);
 const players = ['X', 'O'];
 const playerWinSound = new Audio('assets/sounds/player win.wav');
@@ -28,7 +32,7 @@ function getRandomMathQuestion() {
     const typesOfQuestions = ['limit', 'derivative', 'arithmetic', 'integral', 'quadratic'];
     const randomType = typesOfQuestions[Math.floor(Math.random() * typesOfQuestions.length)];
 
-    let equation, answer;
+    let equation, answer, type;
 
     switch (randomType) {
         case 'limit':
@@ -231,7 +235,6 @@ function handleClick(e) {
         if (result.isConfirmed) {
             const userAnswer = result.value.trim();
 
-            // For quadratic equations, check if the user answer matches either root
             if (mathBoard[index].type === 'quadratic') {
                 if (userAnswer === mathBoard[index].answer[0].toString() || 
                     userAnswer === mathBoard[index].answer[1].toString()) {
@@ -243,6 +246,8 @@ function handleClick(e) {
                     if (checkWinner()) {
                         isGameActive = false;
                         playerWinSound.play();
+                        updatePlayerWins(botDifficulty);
+
                         Swal.fire ({
                             title: `Player ${players[currentPlayer]} wins!`,
                             imageUrl: 'assets/images/player win.gif',
@@ -282,7 +287,6 @@ function handleClick(e) {
                     }
                 }
             } else {
-                // Handle non-quadratic questions
                 if (userAnswer === mathBoard[index].answer) {
                     board[index] = players[currentPlayer];
                     markSound.play();
@@ -291,6 +295,8 @@ function handleClick(e) {
                     if (checkWinner()) {
                         isGameActive = false;
                         playerWinSound.play();
+                        updatePlayerWins(botDifficulty);
+                        
                         Swal.fire({
                             title: `Player ${players[currentPlayer]} wins!`,
                             imageUrl: 'assets/images/player win.gif',
@@ -516,6 +522,76 @@ function showHomePage() {
     resetGame();
 }
 
+async function showPlayerStats() {
+    const user = auth.currentUser ;
+
+    try {
+        const userDocRef = doc(db, 'playerStats', user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+            const data = userDoc.data();
+            Swal.fire({
+                title: 'Your Game Stats',
+                html: `
+                    <div class="stats-popup">
+                        <p><strong>Easy Wins:</strong> ${data.easy || 0}</p>
+                        <p><strong>Medium Wins:</strong> ${data.medium || 0}</p>
+                        <p><strong>Hard Wins:</strong> ${data.hard || 0}</p>
+                        <p><strong>Total Wins:</strong> ${data.total || 0}</p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Close'
+            });
+        } else {
+            Swal.fire({
+                title: 'Your Game Stats',
+                html: `
+                    <div class="stats-popup">
+                        <p>No stats available yet. Start playing to track your progress!</p>
+                    </div>
+                `,
+                icon: 'info',
+                confirmButtonText: 'Close'
+            });
+        }
+    } catch (error) {
+        console.error("Error fetching player stats:", error);
+        Swal.fire('Error', 'Could not retrieve stats', 'error');
+    }
+}
+
+async function updatePlayerWins(botDifficulty) {
+    const user = auth.currentUser;
+    if (!user) return; // Exit if no user is logged in
+
+    try {
+        const userDocRef = doc(db, 'playerStats', user.uid);
+        
+        // Check if user document exists, if not, create it
+        const userDoc = await getDoc(userDocRef);
+        if (!userDoc.exists()) {
+            await setDoc(userDocRef, {
+                easy: 0,
+                medium: 0,
+                hard: 0,
+                total: 0
+            });
+        }
+
+        // Update wins based on difficulty
+        await updateDoc(userDocRef, {
+            [`${botDifficulty}`]: increment(1),
+            total: increment(1)
+        });
+
+        console.log(`Win recorded for ${botDifficulty} difficulty`);
+    } catch (error) {
+        console.error("Error updating player wins:", error);
+    }
+}
+export { updatePlayerWins, showPlayerStats };
 cells.forEach(cell => cell.addEventListener('click', handleClick));
 
 document.getElementById('player-vs-player').addEventListener('click', () => setGameMode('player'));

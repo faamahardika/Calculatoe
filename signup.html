@@ -12,7 +12,6 @@
     <div class="sign-up-container">
         <h1>Create an Account</h1>
         <form id="sign-up-form" autocomplete="off">
-            <input type="text" id="new-username" placeholder="Username" required>
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="new-password" placeholder="Password" required>
             <input type="password" id="confirm-password" placeholder="Confirm Password" required>
@@ -24,7 +23,11 @@
         <a href="index.html" class="back-to-home">Back to Home</a>
     </div>
 
-    <script src="js/signup.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+    <script type="module" src="config/firebase.js"></script>
+    <script type="module" src="js/signup.js"></script>
+
 </body>
 <footer class="footer">
     &copy; 2024 by 18222124 Fadian Alif Mahardika. All Rights Reserved.

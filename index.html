@@ -14,8 +14,9 @@
     <canvas id="backgroundCanvas"></canvas>
     <header class="header">
         <a href="#" id="home-link" class="logo">Calculatoe.</a>
-        <a href="signin.html" class="signin-button">Sign In</a>
-        
+        <div id="auth-section">
+            <button id="auth-button" class="signin-button">Sign In</button>
+        </div>
     </header>
 
     <main class="background">
@@ -28,6 +29,13 @@
             <button id="player-vs-player" class="mode">Player vs Player</button>
             <button id="player-vs-bot" class="mode">Player vs Bot</button>
         </section>
+
+        <div id="profile-icon">
+            <img src="assets/images/profile.png" id="profile-img">
+            <div id="profile-popup" class="profile-popup hide">
+                <p id="user-info"></p>
+            </div>
+        </div>
 
         <section id="bot-difficulty" class="controls hide">
             <select id="difficulty-select">
@@ -62,8 +70,9 @@
         
     </main>
 
-    <script src="js/game.js"></script>
+    <script type="module" src="js/game.js"></script>
     <script src="js/background.js"></script>
+    <script type="module" src="js/auth.js"></script>
 
     <footer class="footer">
         &copy; 2024 by 18222124 Fadian Alif Mahardika. All Rights Reserved.
