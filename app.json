@@ -1,0 +1,35 @@
+{
+    "expo": {
+      "name": "CalculatoeMobile",
+      "slug": "CalculatoeMobile",
+      "version": "1.0.0",
+      "orientation": "portrait",
+      "icon": "./assets/icon.png",
+      "userInterfaceStyle": "light",
+      "newArchEnabled": true,
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
+      "ios": {
+        "supportsTablet": true
+      },
+      "android": {
+        "adaptiveIcon": {
+          "foregroundImage": "./assets/adaptive-icon.png",
+          "backgroundColor": "##12181B"
+        }
+      },
+      "web": {
+        "favicon": "./assets/favicon.png"
+      },
+      "fonts": [
+      {
+        "asset": "assets/fonts/Itim-Regular.ttf",
+        "family": "Itim-Regular"
+      }
+    ]
+  }
+}
+  
