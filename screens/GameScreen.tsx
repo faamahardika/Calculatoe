@@ -312,8 +312,20 @@ export default function GameScreen({ route, navigation }: Props) {
         {mode === 'bot' && currentPlayer === 'O' ? "Bot's turn" : `Player ${currentPlayer}'s turn`}
       </Text>
       <View style={styles.board}>
-        {board.map((_, index) => renderCell(index))}
+        {board.map((_, index) => (
+          <TouchableOpacity
+            key={index} // Tambahkan key yang unik di sini
+            style={styles.cell}
+            onPress={() => handleCellPress(index)}
+            disabled={!isGameActive || board[index] !== null}
+          >
+            <Text style={[styles.cellText, board[index] === 'O' && styles.botText]}>
+              {board[index] || (mathBoard[index] && mathBoard[index].equation)}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
+
       <TouchableOpacity style={styles.resetButton} onPress={initializeGame}>
         <Text style={styles.resetButtonText}>Reset Game</Text>
       </TouchableOpacity>

@@ -1,35 +1,42 @@
 {
-    "expo": {
-      "name": "CalculatoeMobile",
-      "slug": "CalculatoeMobile",
-      "version": "1.0.0",
-      "orientation": "portrait",
-      "icon": "./assets/icon.png",
-      "userInterfaceStyle": "light",
-      "newArchEnabled": true,
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#ffffff"
-      },
-      "ios": {
-        "supportsTablet": true
-      },
-      "android": {
-        "adaptiveIcon": {
-          "foregroundImage": "./assets/adaptive-icon.png",
-          "backgroundColor": "##12181B"
-        }
-      },
-      "web": {
-        "favicon": "./assets/favicon.png"
-      },
-      "fonts": [
+  "expo": {
+    "name": "CalculatoeMobile",
+    "slug": "CalculatoeMobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#12181B"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.calculatoe"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#12181B"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "fonts": [
       {
         "asset": "assets/fonts/Itim-Regular.ttf",
         "family": "Itim-Regular"
       }
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c8826941-a94e-46f4-9dda-8747ca149c0a"
+      }
+    }
   }
 }
-  

@@ -20,14 +20,19 @@ export default function HomeScreen() {
   }, [user]);
 
   const fetchUserStats = async () => {
-    if (user) {
+    if (!user) return;
+    
+    try {
       const statsRef = doc(db, 'playerStats', user.uid);
       const statsDoc = await getDoc(statsRef);
       if (statsDoc.exists()) {
         setUserStats(statsDoc.data() as { easy: number; medium: number; hard: number; total: number });
       }
+    } catch (error) {
+      console.error("Error fetching user stats:", error);
     }
   };
+  
 
   const handleLogout = async () => {
     try {
@@ -49,10 +54,11 @@ Total Wins: ${userStats.total}`,
     );
   };
 
-  if (!user) {
-    navigation.navigate('Login');
-    return null;
-  }
+  useEffect(() => {
+    if (!user) {
+      navigation.navigate('Login');
+    }
+  }, [user]);  
 
   return (
     <View style={styles.container}>

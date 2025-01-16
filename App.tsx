@@ -56,7 +56,7 @@ export default function App() {
   }, [appIsReady]);
 
   if (!appIsReady) {
-    return <SplashScreenComponent />;
+    return <SplashScreenComponent/>;
   }
 
   return (
