@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, Modal, TextInput } from 'react-native';
 import { Audio } from 'expo-av';
 import { getRandomMathQuestion } from '../utils/mathQuestions';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useFocusEffect } from '@react-navigation/native';
 import { RootStackParamList } from '../App';
 import { useAuth } from '../contexts/AuthContext';
 import { doc, updateDoc, increment, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, 'Game'>;
@@ -32,6 +33,29 @@ export default function GameScreen({ route, navigation }: Props) {
   const [userAnswer, setUserAnswer] = useState('');
   const [sounds, setSounds] = useState<{[key: string]: Audio.Sound}>({});
   const { user } = useAuth();
+
+  useFocusEffect(
+    useCallback(() => {
+      navigation.setOptions({
+        headerShown: true,
+        headerLeft: () => (
+          <HeaderBackButton
+            onPress={() => navigation.navigate('Home')}
+            tintColor="#fff"
+          />
+        ),
+        headerTitle: "Calculatoe",
+        headerStyle: {
+          backgroundColor: '#12181B',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontFamily: 'Itim-Regular',
+        },
+      });
+    }, [navigation])
+  );
 
   useEffect(() => {
     initializeGame();
@@ -291,30 +315,15 @@ export default function GameScreen({ route, navigation }: Props) {
     ]);
   };
 
-  const renderCell = (index: number) => {
-    return (
-      <TouchableOpacity
-        style={styles.cell}
-        onPress={() => handleCellPress(index)}
-        disabled={!isGameActive || board[index] !== null}
-      >
-        <Text style={[styles.cellText, board[index] === 'O' && styles.botText]}>
-          {board[index] || (mathBoard[index] && mathBoard[index].equation)}
-        </Text>
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Calculatoe</Text>
       <Text style={styles.playerTurn}>
         {mode === 'bot' && currentPlayer === 'O' ? "Bot's turn" : `Player ${currentPlayer}'s turn`}
       </Text>
       <View style={styles.board}>
         {board.map((_, index) => (
           <TouchableOpacity
-            key={index} // Tambahkan key yang unik di sini
+            key={index}
             style={styles.cell}
             onPress={() => handleCellPress(index)}
             disabled={!isGameActive || board[index] !== null}
@@ -382,13 +391,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#12181B',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 20,
-    fontFamily: 'Itim-Regular',
+    paddingTop: 20,
   },
   playerTurn: {
     fontSize: 24,
