@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Calculatoe.",
-    "slug": "Calculatoe.",
+    "slug": "Calculatoe",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -36,8 +36,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "c8826941-a94e-46f4-9dda-8747ca149c0a"
+        "projectId": "c1ba9d44-085f-4903-a199-aea64e384b1b"
       }
-    }
+    },
+    "owner": "keriqil"
   }
 }
