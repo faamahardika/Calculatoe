@@ -38,7 +38,7 @@ export default function App() {
 
         await Asset.loadAsync([require('./assets/splash.png')]);
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 5000));
       } catch (e) {
         console.warn(e);
       } finally {

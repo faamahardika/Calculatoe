@@ -8,6 +8,7 @@
     "@react-navigation/stack": "^7.1.1",
     "expo": "^52.0.25",
     "expo-av": "~15.0.2",
+    "expo-router": "^4.0.16",
     "expo-splash-screen": "^0.29.20",
     "firebase": "^11.1.0",
     "metro-config": "^0.81.0",
