@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Calculatoe.",
+    "name": "Calculatoe",
     "slug": "Calculatoe",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,9 +24,9 @@
       "package": "com.Calculatoe"
     },
     "web": {
-      "bundler": "metro",
+      "bundler": "webpack",
       "output": "static",
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.io"
     },
     "fonts": [
       {
@@ -39,6 +39,7 @@
         "projectId": "c1ba9d44-085f-4903-a199-aea64e384b1b"
       }
     },
-    "owner": "keriqil"
+    "owner": "keriqil",
+    "platforms": ["ios", "android", "web"]
   }
 }
