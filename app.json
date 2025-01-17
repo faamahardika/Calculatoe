@@ -24,7 +24,7 @@
       "package": "com.Calculatoe"
     },
     "web": {
-      "bundler": "webpack",
+      "bundler": "metro",
       "output": "static",
       "favicon": "./assets/favicon.io"
     },
